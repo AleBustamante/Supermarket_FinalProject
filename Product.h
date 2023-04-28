@@ -1,7 +1,27 @@
 #pragma once
+#include <string>
+
+using namespace std;
+
+
 class Product
 {
-private:
-	int barCode;
-};
+protected:
+	float costPrice;
+	float sellPrice;
+	float taxes;
+	float displayPrice;
+	int barcode;
+	string name;
 
+	//Manufacturer manufacturer
+
+public:
+	
+
+	float getCostPrice();
+	float getSellPrice();
+
+	virtual void calculateTaxes() = 0;
+
+};
