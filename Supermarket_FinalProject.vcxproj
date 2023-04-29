@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="DataProvider.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Sale.cpp" />
@@ -138,6 +140,7 @@
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="DataProvider.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="Sale.h" />
     <ClInclude Include="Supermarket.h" />

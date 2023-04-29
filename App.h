@@ -8,6 +8,8 @@ using namespace std;
 class App{
 private:
 	Supermarket supermarket;
+
+	void showMenu();
 	
 
 public:
