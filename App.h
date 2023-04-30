@@ -13,7 +13,7 @@ private:
 	DataProvider dataProvider;
 
 	void showMenu();
-	
+	void assignSupermarket();
 
 public:
 	void run();

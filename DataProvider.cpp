@@ -7,7 +7,26 @@ void DataProvider::loadData(){
 		workersDB.close();
 	}
 	else {
-		fstream workersDB(workersDBPath, ios::app);
+		ifstream workersDB;
+		workersDB.open(workersDBPath);
+		workersDB.seekg(0, ios::beg);
+
+		string name = "", lastName = "";
+		float baseSalary = 0, extraHours = 0, discounts = 0, discountForBenefits = 0;
+
+		while (!workersDB.eof()) {
+
+			workersDB >> name;
+			workersDB >> lastName;
+			workersDB >> baseSalary;
+			workersDB >> extraHours;
+			workersDB >> discounts;
+			workersDB >> discountForBenefits;
+
+			supermarket->workers.push_back(new Worker(name, lastName, baseSalary, extraHours, discounts, discountForBenefits));
+		}
+
+		
 		workersDB.close();
 	}
 
@@ -16,10 +35,26 @@ void DataProvider::loadData(){
 		ofstream clientsDB(clientsDBPath);
 		clientsDB.close();
 	}
+	else {
+		fstream clientsDB(workersDBPath, ios::app);
+		clientsDB.close();
+	}
+
+
 	if (!filesystem::exists(salesDBPath)) {
 		ofstream salesDB(salesDBPath);
+		salesDB.close();
+	}
+	else {
+		fstream salesDB(workersDBPath, ios::app);
 		salesDB.close();
 	}
 
 
 }
+
+void DataProvider::setSupermarket(Supermarket* assignedSupermarket){
+	supermarket = assignedSupermarket;
+}
+
+

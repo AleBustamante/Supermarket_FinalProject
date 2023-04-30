@@ -19,5 +19,6 @@ private:
 
 public:
 	void loadData();
+	void setSupermarket(Supermarket* assignedSupermarket);
 };
 
