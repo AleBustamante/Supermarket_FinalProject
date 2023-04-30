@@ -7,6 +7,6 @@ void App::showMenu(){
 void App::run(){
 
 	showMenu();
-
+	dataProvider.loadData();
 
 }

@@ -3,13 +3,22 @@
 void DataProvider::loadData(){
 
 	if (!filesystem::exists(workersDBPath)) {
-		fstream newWorkersDB(workersDBPath);
+		ofstream workersDB(workersDBPath);
+		workersDB.close();
 	}
+	else {
+		fstream workersDB(workersDBPath, ios::app);
+		workersDB.close();
+	}
+
+
 	if (!filesystem::exists(clientsDBPath)) {
-		fstream newWorkersDB(clientsDBPath);
+		ofstream clientsDB(clientsDBPath);
+		clientsDB.close();
 	}
 	if (!filesystem::exists(salesDBPath)) {
-		fstream newWorkersDB(salesDBPath);
+		ofstream salesDB(salesDBPath);
+		salesDB.close();
 	}
 
 
