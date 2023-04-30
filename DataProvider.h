@@ -8,9 +8,9 @@
 
 using namespace std;
 
-constexpr char workersDBPath[] = "./Data Bases/WorkersDataBase.txt";
-constexpr char clientsDBPath[] = "./Data Bases/ClientsDataBase.txt";
-constexpr char salesDBPath[] = "./Data Bases/SalesDataBase.txt";
+constexpr char workersDBPath[] = "./WorkersDataBase.txt";
+constexpr char clientsDBPath[] = "./ClientsDataBase.txt";
+constexpr char salesDBPath[] = "./SalesDataBase.txt";
 
 class DataProvider{
 private:
