@@ -16,9 +16,16 @@ class DataProvider{
 private:
 	Supermarket* supermarket;
 
+	static int currentIDWorker;
+	static int currentIDClient;
+	static int currentIDSale;
+
 
 public:
 	void loadData();
 	void setSupermarket(Supermarket* assignedSupermarket);
+
+
+	static void getCurrentIdentifier();
 };
 

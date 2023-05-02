@@ -1,2 +1,6 @@
 ﻿  DataProvider.cpp
+C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\DataProvider.cpp(64,11): warning C4101: 'cashier': variable local sin referencia
+C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\DataProvider.cpp(63,11): warning C4101: 'client': variable local sin referencia
+C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\DataProvider.cpp(62,8): warning C4101: 'date': variable local sin referencia
+C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\DataProvider.cpp(61,12): warning C4101: 'product': variable local sin referencia
   Supermarket_FinalProject.vcxproj -> C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\x64\Debug\Supermarket_FinalProject.exe
