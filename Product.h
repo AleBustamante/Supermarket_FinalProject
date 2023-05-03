@@ -25,6 +25,9 @@ public:
 	int getBarcode();
 	float getCostPrice();
 	float getSellPrice();
+	float getTaxes();
+	float getDisplayPrice();
+	string getName();
 
 	void showAllProductData();
 

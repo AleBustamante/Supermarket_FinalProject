@@ -21,7 +21,7 @@ void App::run(){
 	int option = -1;
 	assignSupermarket();
 	dataProvider.loadData();
-	Worker* c = new Worker("juan", "Perez", 4000, 2, 3, 0, 200);
+	Worker* w = new Worker("juan", "Perez", 4000, 2, 3, 0, 200);
 	do
 	{
 		showMenu();
@@ -30,8 +30,8 @@ void App::run(){
 		{
 		case 1:
 			
-			dataProvider.saveNewWorker(c);
-			delete c;
+			dataProvider.saveNewWorker(w);
+			
 			break;
 		case 2:
 			break;
@@ -63,5 +63,6 @@ void App::run(){
 			break;
 		}
 	} while (option != 0);
-	
+	delete w;
+
 }

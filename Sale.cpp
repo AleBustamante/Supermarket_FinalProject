@@ -16,3 +16,23 @@ void Sale::showAllSaleData(){
 	cout << "CODIGO DEL CAJERO: " << cashier->getIdentifier() << endl;
 	cout << "LA FECHA DE LA COMPRA FUE: " << date.day << '/' << date.month << '/' << date.year << endl << endl;
 }
+
+int Sale::getIdetifier(){
+	return identifier;
+}
+
+Date Sale::getDate(){
+	return date;
+}
+
+Product* Sale::getProduct(){
+	return product;
+}
+
+Client* Sale::getClient(){
+	return client;
+}
+
+Worker* Sale::getCashier(){
+	return cashier;
+}

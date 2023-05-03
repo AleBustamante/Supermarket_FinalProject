@@ -136,4 +136,61 @@ void DataProvider::saveNewWorker(Worker* worker){
 	workersDB.close();
 }
 
+void DataProvider::saveNewClient(Client* client){
+
+	ofstream clientDB;
+	clientDB.open(clientsDBPath, ios::app);
+	clientDB << '\n';
+	clientDB << client->getIdentifier();
+	clientDB << '\n';
+	clientDB << client->getName();
+	clientDB << '\n';
+	clientDB << client->getLastName();
+	clientDB << '\n';
+	clientDB << client->getCIorNIT();
+
+	clientDB.close();
+}
+
+void DataProvider::saveNewProduct(Product* product){
+	ofstream productDB;
+	productDB.open(productsDBPath, ios::app);
+	productDB << '\n';
+	productDB << product->getBarcode();
+	productDB << '\n';
+	productDB << product->getName();
+	productDB << '\n';
+	productDB << product->getCostPrice();
+	productDB << '\n';
+	productDB << product->getSellPrice();
+	productDB << '\n';
+	productDB << product->getTaxes();
+	productDB << '\n';
+	productDB << product->getDisplayPrice();
+
+	productDB.close();
+}
+
+void DataProvider::saveNewSale(Sale* sale){
+
+	ofstream saleDB;
+	saleDB.open(salesDBPath, ios::app);
+	saleDB << '\n';
+	saleDB << sale->getIdetifier();
+	saleDB << '\n';
+	saleDB << sale->getCashier()->getIdentifier();
+	saleDB << '\n';
+	saleDB << sale->getClient()->getIdentifier();
+	saleDB << '\n';
+	saleDB << sale->getProduct()->getBarcode();
+	saleDB << '\n';
+	saleDB << sale->getDate().day;
+	saleDB << '\n';
+	saleDB << sale->getDate().month;
+	saleDB << '\n';
+	saleDB << sale->getDate().year;
+	
+	saleDB.close();
+}
+
 
