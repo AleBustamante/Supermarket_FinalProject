@@ -21,7 +21,7 @@ void App::run(){
 	int option = -1;
 	assignSupermarket();
 	dataProvider.loadData();
-
+	Worker* c = new Worker("juan", "Perez", 4000, 2, 3, 0, 200);
 	do
 	{
 		showMenu();
@@ -29,6 +29,9 @@ void App::run(){
 		switch (option)
 		{
 		case 1:
+			
+			dataProvider.saveNewWorker(c);
+			delete c;
 			break;
 		case 2:
 			break;

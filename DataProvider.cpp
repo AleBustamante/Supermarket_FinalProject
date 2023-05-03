@@ -113,4 +113,27 @@ void DataProvider::setSupermarket(Supermarket* assignedSupermarket){
 	supermarket = assignedSupermarket;
 }
 
+void DataProvider::saveNewWorker(Worker* worker){
+
+	ofstream workersDB;
+	workersDB.open(workersDBPath, ios::app);
+	workersDB << '\n';
+	workersDB << worker->getIdentifier();
+	workersDB << '\n';
+	workersDB << worker->getName();
+	workersDB << '\n';
+	workersDB << worker->getLastName();
+	workersDB << '\n';
+	workersDB << worker->getBaseSalary();
+	workersDB << '\n';
+	workersDB << worker->getExtraHours();
+	workersDB << '\n';
+	workersDB << worker->getDiscounts();
+	workersDB << '\n';
+	workersDB << worker->getDiscountsForBenefits();
+	workersDB << '\n';
+
+	workersDB.close();
+}
+
 

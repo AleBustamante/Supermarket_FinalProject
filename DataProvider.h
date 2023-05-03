@@ -26,6 +26,7 @@ public:
 	void loadData();
 	void setSupermarket(Supermarket* assignedSupermarket);
 
+	void saveNewWorker(Worker* worker);
 
 	static void getCurrentIdentifier();
 };
