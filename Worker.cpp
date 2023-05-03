@@ -24,3 +24,8 @@ void Worker::showAllWorkerData(){
 	cout << "DESCUENTOS POR BENEFICIOS: " << discountsForBenefits << endl << endl;
 }
 
+
+
+int Worker::getIdentifier(){	
+	return identifier;
+}
