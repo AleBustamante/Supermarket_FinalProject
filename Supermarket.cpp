@@ -41,3 +41,42 @@ void Supermarket::showAllWorkersData(){
         w->showAllWorkerData();
     }
 }
+
+void Supermarket::showAllClientsData(){
+    for (Client* c : clients) {
+        c->showAllClientData();
+    }
+}
+
+void Supermarket::showAllSalesData(){
+    for (Sale* s : sales) {
+        s->showAllSaleData();
+    }
+}
+
+Product* Supermarket::getProductOnBarcode(const int& barcode){
+    for (Product* p : products) {
+        if (p->getBarcode() == barcode) {
+            return p;
+        }
+    }
+    return nullptr;
+}
+
+Client* Supermarket::getClientOnID(const int& identifier){
+    for (Client* c : clients) {
+        if (c->getIdentifier() == identifier) {
+            return c;
+        }
+    }
+    return nullptr;
+}
+
+Worker* Supermarket::getWorkerOnID(const int& identifier){
+    for (Worker* w : workers) {
+        if (w->getIdentifier() == identifier) {
+            return w;
+        }
+    }
+    return nullptr;
+}

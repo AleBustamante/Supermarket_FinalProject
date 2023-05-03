@@ -17,11 +17,14 @@ protected:
 	//Manufacturer manufacturer
 
 public:
-	
+	Product(const int& barcode, const float& costPrice, const float& sellPrice, const float& taxes, 
+		    float& displayPrice, const string& name);
 
+
+	int getBarcode();
 	float getCostPrice();
 	float getSellPrice();
 
-	virtual void calculateTaxes() = 0;
+
 
 };

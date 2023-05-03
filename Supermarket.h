@@ -25,8 +25,13 @@ public:
 	vector<Client*> getClients();
 	vector<Sale*> GetSales();
 
-
 	void showAllWorkersData();
+	void showAllClientsData();
+	void showAllSalesData();
+
+	Product* getProductOnBarcode(const int& barcode);
+	Client* getClientOnID(const int& identifier);
+	Worker* getWorkerOnID(const int& identifier);
 	
 };
 

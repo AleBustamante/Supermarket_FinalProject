@@ -15,5 +15,7 @@ void App::run(){
 	dataProvider.loadData();
 
 	supermarket.showAllWorkersData();
+	supermarket.showAllClientsData();
+	supermarket.showAllSalesData();
 
 }
