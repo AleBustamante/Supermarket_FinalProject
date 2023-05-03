@@ -27,5 +27,11 @@ public:
 	void showAllWorkerData();
 
 	int getIdentifier();
+	string getName();
+	string getLastName();
+	float getBaseSalary();
+	float getExtraHours();
+	float getDiscounts();
+	float getDiscountsForBenefits();
 };
 

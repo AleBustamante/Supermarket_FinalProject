@@ -29,3 +29,27 @@ void Worker::showAllWorkerData(){
 int Worker::getIdentifier(){	
 	return identifier;
 }
+
+string Worker::getName(){
+	return name;
+}
+
+string Worker::getLastName(){
+	return lastName;
+}
+
+float Worker::getBaseSalary(){
+	return baseSalary;
+}
+
+float Worker::getExtraHours(){
+	return extraHours;
+}
+
+float Worker::getDiscounts(){
+	return discounts;
+}
+
+float Worker::getDiscountsForBenefits(){
+	return discountsForBenefits;
+}

@@ -48,6 +48,12 @@ void Supermarket::showAllClientsData(){
     }
 }
 
+void Supermarket::showAllProductsData(){
+    for (Product* p : products) {
+        p->showAllProductData();
+    }
+}
+
 void Supermarket::showAllSalesData(){
     for (Sale* s : sales) {
         s->showAllSaleData();

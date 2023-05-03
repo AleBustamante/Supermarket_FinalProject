@@ -28,5 +28,13 @@ private:
 public:
 	Sale(Product* product, Client* client, Worker* cashier, const Date& date, const int& identifier);
 	void showAllSaleData();
+
+
+	int getIdetifier();
+	Date getDate();
+	Product* getProduct();
+	Client* getClient();
+	Worker* getCashier();
+	
 };
 
