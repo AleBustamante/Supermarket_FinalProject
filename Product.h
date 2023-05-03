@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -25,6 +26,6 @@ public:
 	float getCostPrice();
 	float getSellPrice();
 
-
+	void showAllProductData();
 
 };

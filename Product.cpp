@@ -13,3 +13,13 @@ Product::Product(const int& barcode, const float& costPrice, const float& sellPr
 int Product::getBarcode(){
     return barcode;
 }
+
+void Product::showAllProductData(){
+    cout << "NOMBRE: " << name << endl;
+    cout << "PRECIO DE COSTO: " << costPrice << "Bs." << endl;
+    cout << "PRECIO DE VENTA: " << sellPrice << "Bs." << endl;
+    cout << "IMPUESTOS: " << taxes << "Bs." << endl;
+    cout << "PRECIO EN ANAQUEL: " << displayPrice << "Bs." << endl;
+    cout << "CODIGO DE BARRAS: " << barcode << endl << endl;
+
+}

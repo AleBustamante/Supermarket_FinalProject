@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-
+#include <Windows.h>
 
 #include "Supermarket.h"
 #include "DataProvider.h"

@@ -27,6 +27,7 @@ public:
 
 	void showAllWorkersData();
 	void showAllClientsData();
+	void showAllProductsData();
 	void showAllSalesData();
 
 	Product* getProductOnBarcode(const int& barcode);
