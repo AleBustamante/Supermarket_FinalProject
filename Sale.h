@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-
+#include <vector>
 
 #include "Product.h"
 
@@ -20,19 +20,19 @@ struct Date{
 class Sale{
 private:
 	int identifier;
-	Product* product;
+	vector<Product*> products;
 	Date date;
 	Client* client;
 	Worker* cashier;
 
 public:
-	Sale(Product* product, Client* client, Worker* cashier, const Date& date, const int& identifier);
+	Sale(vector<Product*> products, Client* client, Worker* cashier, const Date& date, const int& identifier);
 	void showAllSaleData();
 
 
 	int getIdetifier();
 	Date getDate();
-	Product* getProduct();
+	vector<Product*> getProducts();
 	Client* getClient();
 	Worker* getCashier();
 	

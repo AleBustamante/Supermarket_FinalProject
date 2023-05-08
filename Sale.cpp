@@ -2,8 +2,8 @@
 #include "Worker.h"
 #include "Client.h"
 
-Sale::Sale(Product* product, Client* client, Worker* cashier, const Date& date, const int& identifier){
-	this->product = product;
+Sale::Sale(vector<Product*> products, Client* client, Worker* cashier, const Date& date, const int& identifier){
+	this->products = products;
 	this->client = client;
 	this->cashier = cashier;
 	this->date = date;
@@ -11,10 +11,14 @@ Sale::Sale(Product* product, Client* client, Worker* cashier, const Date& date, 
 }
 
 void Sale::showAllSaleData(){
-	cout << "CODIGO DE BARRAS DEL PRODUCTO: " << product->getBarcode() << endl;
 	cout << "CODIGO DEL CLIENT: " << client->getIdentifier() << endl;
 	cout << "CODIGO DEL CAJERO: " << cashier->getIdentifier() << endl;
-	cout << "LA FECHA DE LA COMPRA FUE: " << date.day << '/' << date.month << '/' << date.year << endl << endl;
+	cout << "LA FECHA DE LA COMPRA FUE: " << date.day << '/' << date.month << '/' << date.year << endl;
+	cout << "PRODUCTOS COMPRADOS: \n";
+	for (Product* p : products) {
+		cout << p->getName() << '\n';
+	}
+	cout << endl;
 }
 
 int Sale::getIdetifier(){
@@ -25,9 +29,11 @@ Date Sale::getDate(){
 	return date;
 }
 
-Product* Sale::getProduct(){
-	return product;
+vector<Product*> Sale::getProducts(){
+	return products;
 }
+
+
 
 Client* Sale::getClient(){
 	return client;
