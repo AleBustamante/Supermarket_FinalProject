@@ -66,15 +66,23 @@ void DataProvider::loadData(){
 		ifstream productsDB;
 		productsDB.open(productsDBPath);
 		productsDB.seekg(0, ios::beg);
-
+		int test = productsDB.tellg();
 		while (!productsDB.eof()) {
+			test = productsDB.tellg();
 			productsDB >> barcode;
+			test = productsDB.tellg();
 			productsDB >> name;
+			test = productsDB.tellg();
 			productsDB >> costPrice;
+			test = productsDB.tellg();
 			productsDB >> sellPrice;
+			test = productsDB.tellg();
 			productsDB >> taxes;
+			test = productsDB.tellg();
 			productsDB >> displayPrice;
+			test = productsDB.tellg();
 			supermarket->products.push_back(new Product(barcode, costPrice, sellPrice, taxes, displayPrice, name));
+			test = productsDB.tellg();
 		}
 		productsDB.close();
 	}
@@ -87,6 +95,7 @@ void DataProvider::loadData(){
 	else {
 		int identifier, IDWorker, IDClient, barcode;
 		Date date;
+		vector<Product*> bufferProducts;
 
 		ifstream salesDB;
 		salesDB.open(salesDBPath);
@@ -96,12 +105,17 @@ void DataProvider::loadData(){
 			salesDB >> identifier;
 			salesDB >> IDWorker;
 			salesDB >> IDClient;
-			salesDB >> barcode;
 			salesDB >> date.day;
 			salesDB >> date.month;
 			salesDB >> date.year;
-			supermarket->sales.push_back(new Sale(supermarket->getProductOnBarcode(barcode), supermarket->getClientOnID(IDClient),
-				supermarket->getWorkerOnID(IDWorker), date, identifier));
+			salesDB >> barcode;
+			while (barcode != -111) {
+				bufferProducts.push_back(supermarket->getProductOnBarcode(barcode));
+				salesDB >> barcode;
+			}
+			supermarket->sales.push_back(new Sale(bufferProducts, supermarket->getClientOnID(IDClient),
+											  supermarket->getWorkerOnID(IDWorker), date, identifier));
+			bufferProducts.clear();
 		}
 		salesDB.close();
 	}
@@ -182,14 +196,17 @@ void DataProvider::saveNewSale(Sale* sale){
 	saleDB << '\n';
 	saleDB << sale->getClient()->getIdentifier();
 	saleDB << '\n';
-	saleDB << sale->getProduct()->getBarcode();
-	saleDB << '\n';
 	saleDB << sale->getDate().day;
 	saleDB << '\n';
 	saleDB << sale->getDate().month;
 	saleDB << '\n';
 	saleDB << sale->getDate().year;
-	
+	for (Product* p : sale->getProducts()) {
+		saleDB << p->getBarcode();
+		saleDB << '\n';
+	}
+	saleDB << -111;
+
 	saleDB.close();
 }
 
