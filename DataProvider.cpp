@@ -53,7 +53,7 @@ void DataProvider::loadData(){
 	}
 
 
-	//Read data from salesDB
+	//Read data from productsDB
 	if (!filesystem::exists(productsDBPath)) {
 		ofstream productsDB(productsDBPath);
 		productsDB.close();
