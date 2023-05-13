@@ -1,10 +1,16 @@
 0
+abcd
+1
+0
 Pedro
 Perez
 3000
 2.1
 50
 200
+1
+jklm
+2
 1
 Juan
 Vargas

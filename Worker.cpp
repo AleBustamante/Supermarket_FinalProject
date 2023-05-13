@@ -2,11 +2,12 @@
 
 
 
-Worker::Worker(const string& name, const string& lastName, const float& baseSalary, const int& identifier,
+Worker::Worker(const string& name, const string& lastName, const Credential& credential, const float& baseSalary, const int& identifier,
 			   const float& extraHours, const float& discounts, const float& discountsForBenefits){
 
 	this->name = name;
 	this->lastName = lastName;
+	this->credential = credential;
 	this->baseSalary = baseSalary;
 	this->identifier = identifier;
 	this->extraHours = extraHours;
@@ -52,4 +53,8 @@ float Worker::getDiscounts(){
 
 float Worker::getDiscountsForBenefits(){
 	return discountsForBenefits;
+}
+
+Credential Worker::getCredential(){
+	return credential;
 }
