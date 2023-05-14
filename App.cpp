@@ -38,8 +38,9 @@ void App::showSpecificMenu(const WorkerType& workerType){
 }
 
 void App::showCashierMenu(){
-	cout << "***********SELECCIONE CLIENTE***********\n";
+
 	searchPrintResults(supermarket.getClients());
+	
 
 }
 
@@ -114,5 +115,9 @@ void App::run(){
 	*/
 	assignSupermarket();
 	dataProvider.loadData();
+	print::setDefaultWindowSize();
+	print::goToXY({ 20,20 });
+
+
 	showCashierMenu();
 }

@@ -1,4 +1,9 @@
 ﻿  App.cpp
+  PrintToConsole.cpp
+C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\PrintToConsole.cpp(46,47): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\PrintToConsole.cpp(70,81): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\PrintToConsole.cpp(82,2): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
   Search.cpp
+  main.cpp
   Generando código...
   Supermarket_FinalProject.vcxproj -> C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\x64\Debug\Supermarket_FinalProject.exe

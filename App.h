@@ -8,9 +8,12 @@
 #include "Credential.h"
 #include "Searchable.h"
 #include "Search.h"
-
+#include "PrintToConsole.h"
 
 using namespace std;
+
+
+
 
 class App{
 private:

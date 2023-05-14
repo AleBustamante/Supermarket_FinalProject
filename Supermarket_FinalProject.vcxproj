@@ -133,6 +133,7 @@
     <ClCompile Include="Credential.cpp" />
     <ClCompile Include="DataProvider.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PrintToConsole.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Sale.cpp" />
     <ClCompile Include="Search.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="Credential.h" />
     <ClInclude Include="DataProvider.h" />
+    <ClInclude Include="PrintToConsole.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="Sale.h" />
     <ClInclude Include="Search.h" />
