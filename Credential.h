@@ -38,7 +38,7 @@ public:
 	WorkerType getWorkerType();
 
 
-	static bool isPassCorrect(const string& triedPass);
+	 bool isPassCorrect(const string& triedPass);
 
 };
 

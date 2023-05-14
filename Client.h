@@ -1,14 +1,16 @@
 #pragma once
 #include <string>
 #include <vector>
-
+#include <list>
+#include <sstream>
 
 #include "Sale.h"
+#include "Searchable.h"
 
 using namespace std;
 
 
-class Client{
+class Client : public Searchable{
 private:
 	int identifier;
 	string name;
@@ -26,5 +28,12 @@ public:
 	int getCIorNIT();
 
 	void showAllClientData();
+
+
+	//Searchable interface
+	bool isInIdentifier(const int& search) override;
+	bool isInName(const string& search) override;
+	int searchedIdentifier() override;
+	string searchedName() override;
 };
 

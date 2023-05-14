@@ -1,8 +1,4 @@
 ﻿  App.cpp
-  Credential.cpp
-  Sale.cpp
-  Supermarket.cpp
-  Worker.cpp
-  main.cpp
+  Search.cpp
   Generando código...
   Supermarket_FinalProject.vcxproj -> C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\x64\Debug\Supermarket_FinalProject.exe

@@ -7,9 +7,9 @@ void App::showLoginMenu(){
 	cin >> identifier;
 	cout << "INGRESE SU CONTRASENIA: \n";
 	cin >> password;
-	if (Credential::isPassCorrect(password)) {
+	/*if (Credential::isPassCorrect(password)) {
 		showSpecificMenu(supermarket.getWorkerOnID(identifier)->getCredential().getWorkerType());
-	}
+	}*/
 
 }
 
@@ -38,16 +38,8 @@ void App::showSpecificMenu(const WorkerType& workerType){
 }
 
 void App::showCashierMenu(){
-	cout << "***********NUEVA VENTA***********\n";
-	cout << "Nombre(s)\n";
-	cout << "2. Registrar nuevo cliente\n";
-	cout << "3. Registrar nuevo producto\n";
-	cout << "4. Mostrar todos los trabajadores\n";
-	cout << "5. Mostrar todos los clientes\n";
-	cout << "6. Mostrar todos los productos\n";
-	cout << "7. Mostrar todas las ventas\n";
-	cout << "0. Salir\n";
-	cout << "***************************\n";
+	cout << "***********SELECCIONE CLIENTE***********\n";
+	searchPrintResults(supermarket.getClients());
 
 }
 
@@ -77,7 +69,7 @@ void App::assignSupermarket(){
 }
 
 void App::run(){
-	int option = -1;
+	/*int option = -1;
 	assignSupermarket();
 	dataProvider.loadData();
 	do
@@ -119,5 +111,8 @@ void App::run(){
 			break;
 		}
 	} while (option != 0);
-
+	*/
+	assignSupermarket();
+	dataProvider.loadData();
+	showCashierMenu();
 }

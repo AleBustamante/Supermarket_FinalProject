@@ -147,6 +147,7 @@
     <ClInclude Include="Product.h" />
     <ClInclude Include="Sale.h" />
     <ClInclude Include="Search.h" />
+    <ClInclude Include="Searchable.h" />
     <ClInclude Include="Supermarket.h" />
     <ClInclude Include="Worker.h" />
   </ItemGroup>

@@ -1,10 +1,14 @@
 #pragma once
 #include <iostream>
 #include <Windows.h>
+#include <conio.h>
 
 #include "Supermarket.h"
 #include "DataProvider.h"
 #include "Credential.h"
+#include "Searchable.h"
+#include "Search.h"
+
 
 using namespace std;
 
