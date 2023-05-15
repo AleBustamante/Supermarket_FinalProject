@@ -1,18 +1,2 @@
 ﻿  App.cpp
-  Client.cpp
-  DataProvider.cpp
-C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\DataProvider.cpp(69,12): warning C4244: 'inicializando': conversión de 'std::streamoff' a 'int'; posible pérdida de datos
-C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\DataProvider.cpp(71,27): warning C4244: '=': conversión de 'std::streamoff' a 'int'; posible pérdida de datos
-C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\DataProvider.cpp(73,27): warning C4244: '=': conversión de 'std::streamoff' a 'int'; posible pérdida de datos
-C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\DataProvider.cpp(75,27): warning C4244: '=': conversión de 'std::streamoff' a 'int'; posible pérdida de datos
-C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\DataProvider.cpp(77,27): warning C4244: '=': conversión de 'std::streamoff' a 'int'; posible pérdida de datos
-C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\DataProvider.cpp(79,27): warning C4244: '=': conversión de 'std::streamoff' a 'int'; posible pérdida de datos
-C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\DataProvider.cpp(81,27): warning C4244: '=': conversión de 'std::streamoff' a 'int'; posible pérdida de datos
-C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\DataProvider.cpp(83,27): warning C4244: '=': conversión de 'std::streamoff' a 'int'; posible pérdida de datos
-C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\DataProvider.cpp(85,27): warning C4244: '=': conversión de 'std::streamoff' a 'int'; posible pérdida de datos
-  Sale.cpp
-  Supermarket.cpp
-  Worker.cpp
-  main.cpp
-  Generando código...
   Supermarket_FinalProject.vcxproj -> C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\x64\Debug\Supermarket_FinalProject.exe

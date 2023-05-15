@@ -5,6 +5,7 @@
 #include <filesystem>
 
 #include "Supermarket.h"
+#include "Credential.h"
 
 using namespace std;
 

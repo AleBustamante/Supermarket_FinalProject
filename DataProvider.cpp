@@ -9,7 +9,8 @@ void DataProvider::loadData(){
 	else {
 		string name, lastName;
 		float baseSalary, extraHours, discounts, discountForBenefits;
-		int identifier;
+		int identifier, wType;
+		Credential credential;
 
 		ifstream workersDB;
 		workersDB.open(workersDBPath);
@@ -17,13 +18,17 @@ void DataProvider::loadData(){
 
 		while (!workersDB.eof()) {
 			workersDB >> identifier;
+			workersDB >> credential.hashedPassword;
+			workersDB >> wType;
+			credential.workerType = (WorkerType)wType;
+			workersDB >> credential.hasPriviliges;
 			workersDB >> name;
 			workersDB >> lastName;
 			workersDB >> baseSalary;
 			workersDB >> extraHours;
 			workersDB >> discounts;
 			workersDB >> discountForBenefits;
-			supermarket->workers.push_back(new Worker(name, lastName, baseSalary, identifier, extraHours, discounts, discountForBenefits));
+			supermarket->workers.push_back(new Worker(name, lastName, credential, baseSalary, identifier, extraHours, discounts, discountForBenefits));
 		}		
 		workersDB.close();
 	}
