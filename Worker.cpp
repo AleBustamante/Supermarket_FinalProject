@@ -58,3 +58,48 @@ float Worker::getDiscountsForBenefits(){
 Credential Worker::getCredential(){
 	return credential;
 }
+
+bool Worker::isInIdentifier(const int& search){
+	string searchStr, identifierStr;
+	stringstream searchBuff, identifierBuff;
+
+	//Convert to stream
+	searchBuff << search;
+	identifierBuff << identifier;
+
+	//Write on a string
+	searchBuff >> searchStr;
+	identifierBuff >> identifierStr;
+	if (searchStr.size() > identifierStr.size()) {
+		return false;
+	}
+	for (int i = 0; i < searchStr.size(); i++) {
+		if (searchStr[i] != identifierStr[i]) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool Worker::isInName(const string& search){
+	string fullName = name + ' ' + lastName;
+	if (search.size() > fullName.size()) {
+		return false;
+	}
+	else {
+		for (int i = 0; i < search.size(); i++) {
+			if (fullName[i] != search[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+}
+
+int Worker::searchedIdentifier(){
+	return identifier;
+}
+
+string Worker::searchedName(){
+	return name + ' ' + lastName;
+}

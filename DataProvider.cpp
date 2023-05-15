@@ -73,21 +73,14 @@ void DataProvider::loadData(){
 		productsDB.seekg(0, ios::beg);
 		int test = productsDB.tellg();
 		while (!productsDB.eof()) {
-			test = productsDB.tellg();
 			productsDB >> barcode;
-			test = productsDB.tellg();
 			productsDB >> name;
-			test = productsDB.tellg();
 			productsDB >> costPrice;
-			test = productsDB.tellg();
 			productsDB >> sellPrice;
-			test = productsDB.tellg();
 			productsDB >> taxes;
-			test = productsDB.tellg();
 			productsDB >> displayPrice;
-			test = productsDB.tellg();
 			supermarket->products.push_back(new Product(barcode, costPrice, sellPrice, taxes, displayPrice, name));
-			test = productsDB.tellg();
+
 		}
 		productsDB.close();
 	}

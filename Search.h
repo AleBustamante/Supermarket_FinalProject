@@ -35,7 +35,7 @@ void searchPrintResults(vector<T*> objectsList, const char& input, string& searc
 			}
 		}
 
-		if (s->isInIdentifier(atoi(search.c_str()))) {
+		if (s->isInIdentifier(atoi(search.c_str()))) { //CAREFULL, this double conversion results in search = "0" Forbidden use of 0 as ID
 			cout << '\n' << s->searchedName() << " -> " << s->searchedIdentifier();
 			if (!objectFound) {
 				object = s;

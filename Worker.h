@@ -1,14 +1,16 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <sstream>
 
 
 #include "Credential.h"
+#include "Searchable.h"
 
 using namespace std;
 
 
-class Worker{
+class Worker : public Searchable{
 private:
 	
 	int identifier;
@@ -39,5 +41,13 @@ public:
 	float getDiscounts();
 	float getDiscountsForBenefits();
 	Credential getCredential();
+
+
+	//Searchable interface
+	bool isInIdentifier(const int& search) override;
+	bool isInName(const string& search) override;
+	int searchedIdentifier() override;
+	string searchedName() override;
+
 };
 

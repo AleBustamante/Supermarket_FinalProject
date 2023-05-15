@@ -24,7 +24,8 @@ private:
 	void showLoginMenu();
 	void showSpecificMenu(const WorkerType& workerType);
 
-	void searchMenu(Searchable*& searchedObject, const string& title, const string& hint1 = "", const string& hint2 = "", const string& hint3 = "");
+	void searchMenu(Searchable*& searchedObject, const WorkerType& objectType, const string& title,
+		            const string& hint1 = "", const string& hint2 = "", const string& hint3 = "");
 	void showCashierMenu();
 	void showWarehouseMenu();
 	void ShowManagementMenu();

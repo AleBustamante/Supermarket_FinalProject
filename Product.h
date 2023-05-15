@@ -1,12 +1,14 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <sstream>
+
+#include "Searchable.h"
 
 using namespace std;
 
 
-class Product
-{
+class Product : public Searchable{
 protected:
 	float costPrice;
 	float sellPrice;
@@ -30,5 +32,12 @@ public:
 	string getName();
 
 	void showAllProductData();
+
+
+	//Searchable interface
+	bool isInIdentifier(const int& search) override;
+	bool isInName(const string& search) override;
+	int searchedIdentifier() override;
+	string searchedName() override;
 
 };

@@ -52,7 +52,8 @@ void App::showSpecificMenu(const WorkerType& workerType){
 	}
 }
 
-void App::searchMenu(Searchable*& searchedObject, const string& title, const string& hint1, const string& hint2, const string& hint3){
+void App::searchMenu(Searchable*& searchedObject, const WorkerType& objectType, const string& title,
+	                 const string& hint1, const string& hint2, const string& hint3){
 	char input;
 	string search;
 	print::printTitle(title);
@@ -65,24 +66,39 @@ void App::searchMenu(Searchable*& searchedObject, const string& title, const str
 		}
 		print::printTitle(title);
 		print::printHints(hint1, hint2, hint3);
-		searchPrintResults(supermarket.getClients(), input, search, searchedObject);
+		switch (objectType)
+		{
+		case unasigned:
+			break;
+		case cashier:
+			searchPrintResults(supermarket.getClients(), input, search, searchedObject);
+			break;
+		case warehouse:
+			searchPrintResults(supermarket.getProducts(), input, search, searchedObject);
+			break;
+		case management:
+			searchPrintResults(supermarket.getWorkers(), input, search, searchedObject);
+			break;
+		default:
+			break;
+		}	
 	}
 }
 
 void App::showCashierMenu(){
 
 	Searchable* selectedClient = nullptr;
-	searchMenu(selectedClient, "CLIENTE", "ENTER para seleccionar al primer cliente de la lista");
+	searchMenu(selectedClient, WorkerType::cashier, "CLIENTE", "ENTER para seleccionar al primer cliente de la lista");
 }
 
 void App::showWarehouseMenu(){
 	Searchable* selectedProduct = nullptr;
-	searchMenu(selectedProduct, "PRODUCTOS", "ENTER para seleccionar el primer producto de la lista");
+	searchMenu(selectedProduct, WorkerType::warehouse, "PRODUCTOS", "ENTER para seleccionar el primer producto de la lista");
 }
 
 void App::ShowManagementMenu(){
 	Searchable* selectedWorker = nullptr;
-	searchMenu(selectedWorker, "TRABAJADORES", "ENTER para seleccionar al primer trabajador de la lista");
+	searchMenu(selectedWorker, WorkerType::management, "TRABAJADORES", "ENTER para seleccionar al primer trabajador de la lista");
 }
 
 void App::showMenu(){
@@ -107,9 +123,9 @@ void App::run(){
 	dataProvider.loadData();
 	print::setDefaultWindowSize();
 
-	showSpecificMenu((WorkerType) 0);
+	//showSpecificMenu(WorkerType::management);
 
-	//showCashierMenu();
+	ShowManagementMenu();
 	/*int option = -1;
 	assignSupermarket();
 	dataProvider.loadData();
