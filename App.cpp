@@ -14,6 +14,21 @@ void App::showLoginMenu(){
 }
 
 void App::showSpecificMenu(const WorkerType& workerType){
+	int loginID;
+	char loginPass;
+	print::printTitle("INICIAR SESION");
+	print::printHints("Ingrese su identificador");
+	print::setCursorToInputPos();
+	cin >> loginID;
+	system("CLS");
+	print::printTitle("INICIAR SESION");
+	print::printHints("Ingrese su contrasenia");
+	print::setCursorToInputPos();
+	while (loginPass = _getch()) {
+		cout << "*";
+	}
+
+	
 	switch (workerType)
 	{
 	case unasigned:
@@ -37,19 +52,37 @@ void App::showSpecificMenu(const WorkerType& workerType){
 	}
 }
 
+void App::searchMenu(Searchable*& searchedObject, const string& title, const string& hint1, const string& hint2, const string& hint3){
+	char input;
+	string search;
+	print::printTitle(title);
+	print::printHints(hint1, hint2, hint3);
+	while (input = _getch()) {
+		system("CLS");
+		if (input == '\r' && searchedObject != nullptr) {
+			cout << searchedObject->searchedName();
+			return;
+		}
+		print::printTitle(title);
+		print::printHints(hint1, hint2, hint3);
+		searchPrintResults(supermarket.getClients(), input, search, searchedObject);
+	}
+}
+
 void App::showCashierMenu(){
 
-	searchPrintResults(supermarket.getClients());
-	
-
+	Searchable* selectedClient = nullptr;
+	searchMenu(selectedClient, "CLIENTE", "ENTER para seleccionar al primer cliente de la lista");
 }
 
 void App::showWarehouseMenu(){
-
+	Searchable* selectedProduct = nullptr;
+	searchMenu(selectedProduct, "PRODUCTOS", "ENTER para seleccionar el primer producto de la lista");
 }
 
 void App::ShowManagementMenu(){
-
+	Searchable* selectedWorker = nullptr;
+	searchMenu(selectedWorker, "TRABAJADORES", "ENTER para seleccionar al primer trabajador de la lista");
 }
 
 void App::showMenu(){
@@ -70,6 +103,13 @@ void App::assignSupermarket(){
 }
 
 void App::run(){
+	assignSupermarket();
+	dataProvider.loadData();
+	print::setDefaultWindowSize();
+
+	showSpecificMenu((WorkerType) 0);
+
+	//showCashierMenu();
 	/*int option = -1;
 	assignSupermarket();
 	dataProvider.loadData();
@@ -113,11 +153,5 @@ void App::run(){
 		}
 	} while (option != 0);
 	*/
-	assignSupermarket();
-	dataProvider.loadData();
-	print::setDefaultWindowSize();
-	print::goToXY({ 20,20 });
-
-
-	showCashierMenu();
+	
 }

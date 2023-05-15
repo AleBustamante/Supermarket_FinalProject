@@ -9,6 +9,9 @@ Client::Client(const string& name, const string& lastName, const int& CIorNIT, c
 	shoppingHistory.push_back(nullptr);
 }
 
+Client::Client(){
+}
+
 int Client::getIdentifier(){
 	return identifier;
 }

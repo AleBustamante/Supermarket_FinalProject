@@ -21,6 +21,7 @@ private:
 public:
 
 	Client(const string& name, const string& lastName, const int& CIorNIT, const int& identifier = -1);
+	Client();
 
 	int getIdentifier();
 	string getName();
