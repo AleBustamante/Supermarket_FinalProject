@@ -14,22 +14,55 @@ void App::showLoginMenu(){
 }
 
 void App::showSpecificMenu(const WorkerType& workerType){
-	int loginID;
-	char loginPass;
+	int triedID;
+	char bufferPass;
+	string triedPass;
+	Worker* worker;
 	print::printTitle("INICIAR SESION");
 	print::printHints("Ingrese su identificador");
 	print::setCursorToInputPos();
-	cin >> loginID;
+	cin >> triedID;
+
+	worker = supermarket.getWorkerOnID(triedID);
+	if (worker == nullptr) {
+		cout << "Error al ingresar el identificador de usuario" << endl;
+		return;
+	}
+
 	system("CLS");
 	print::printTitle("INICIAR SESION");
 	print::printHints("Ingrese su contrasenia");
 	print::setCursorToInputPos();
-	while (loginPass = _getch()) {
-		cout << "*";
-	}
+	while (bufferPass = _getch()) {
+		system("CLS");
+		print::printTitle("INICIAR SESION");
+		print::printHints("Ingrese su contrasenia");
+		
+		if (bufferPass == '\r') {
+			system("CLS");
+			break;
+		}
+		else if (bufferPass == '\b' && triedPass.size() == 0) {}
 
+		else if (bufferPass == '\b') {
+			triedPass.pop_back();
+		}
+		else {
+			triedPass.push_back(bufferPass);
+		}
+		
+		for (int i = 0; i < triedPass.size(); i++) {
+			cout << "*";
+		}
+
+	}
+	if (!worker->getCredential().isPassCorrect(triedPass)) {
+		cout << "Error al ingresar la contraseña" << endl;
+		return;
+	}
 	
-	switch (workerType)
+	
+	switch (worker->getCredential().getWorkerType())
 	{
 	case unasigned:
 		cout << "El trabajador no cuenta con ninguna funcion asignada hasta el momento\n";
@@ -88,17 +121,17 @@ void App::searchMenu(Searchable*& searchedObject, const WorkerType& objectType, 
 void App::showCashierMenu(){
 
 	Searchable* selectedClient = nullptr;
-	searchMenu(selectedClient, WorkerType::cashier, "CLIENTE", "ENTER para seleccionar al primer cliente de la lista");
+	searchMenu(selectedClient, WorkerType::cashier, "CAJERO", "ENTER para seleccionar al primer cliente de la lista");
 }
 
 void App::showWarehouseMenu(){
 	Searchable* selectedProduct = nullptr;
-	searchMenu(selectedProduct, WorkerType::warehouse, "PRODUCTOS", "ENTER para seleccionar el primer producto de la lista");
+	searchMenu(selectedProduct, WorkerType::warehouse, "ALMACEN", "ENTER para seleccionar el primer producto de la lista");
 }
 
 void App::ShowManagementMenu(){
 	Searchable* selectedWorker = nullptr;
-	searchMenu(selectedWorker, WorkerType::management, "TRABAJADORES", "ENTER para seleccionar al primer trabajador de la lista");
+	searchMenu(selectedWorker, WorkerType::management, "GERENCIA", "ENTER para seleccionar al primer trabajador de la lista");
 }
 
 void App::showMenu(){
@@ -123,9 +156,9 @@ void App::run(){
 	dataProvider.loadData();
 	print::setDefaultWindowSize();
 
-	//showSpecificMenu(WorkerType::management);
+	showSpecificMenu(WorkerType::management);
 
-	ShowManagementMenu();
+	//ShowManagementMenu();
 	/*int option = -1;
 	assignSupermarket();
 	dataProvider.loadData();

@@ -42,6 +42,6 @@ WorkerType Credential::getWorkerType(){
 }
 
 bool Credential::isPassCorrect(const string& triedPass){
-
-	return encryptedString(triedPass) == hashedPassword;
+	return triedPass == hashedPassword;
+	//return encryptedString(triedPass) == hashedPassword;
 }
