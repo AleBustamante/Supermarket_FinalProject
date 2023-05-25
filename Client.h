@@ -9,6 +9,7 @@
 
 using namespace std;
 
+static int lastID = 0;
 
 class Client : public Searchable{
 private:
@@ -30,6 +31,8 @@ public:
 
 	void showAllClientData();
 
+
+	int getAutoID();
 
 	//Searchable interface
 	bool isInIdentifier(const int& search) override;

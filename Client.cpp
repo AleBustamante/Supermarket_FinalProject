@@ -5,7 +5,12 @@ Client::Client(const string& name, const string& lastName, const int& CIorNIT, c
 	this->name = name;
 	this->lastName = lastName;
 	this->CIorNIT = CIorNIT;
-	this->identifier = identifier;
+	if (identifier == -1) {
+		this->identifier = getAutoID();
+	}
+	else {
+		this->identifier = identifier;
+	}
 	shoppingHistory.push_back(nullptr);
 }
 
@@ -33,6 +38,10 @@ void Client::showAllClientData(){
 	cout << "NOMBRE: " << name << endl;
 	cout << "APELLIDO: " << lastName << endl;
 	cout << "CI O NIT: " << CIorNIT << endl << endl;
+}
+
+int Client::getAutoID(){
+	return lastID++;
 }
 
 bool Client::isInIdentifier(const int& search){
