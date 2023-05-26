@@ -71,7 +71,7 @@ Product* Supermarket::getProductOnBarcode(const int& barcode){
 
 Client* Supermarket::getClientOnID(const int& identifier){
     for (Client* c : clients) {
-        if (c->getIdentifier() == identifier) {
+        if (c->getCIorNIT() == identifier) {
             return c;
         }
     }

@@ -15,6 +15,7 @@ using namespace std;
 
 class App{
 private:
+	Worker* logedWorker;
 	Supermarket supermarket;
 	DataProvider dataProvider;
 	//Credential loginCredentials;

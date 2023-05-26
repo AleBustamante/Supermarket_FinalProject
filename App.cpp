@@ -17,15 +17,14 @@ void App::showSpecificMenu(const WorkerType& workerType){
 	int triedID;
 	char bufferPass;
 	string triedPass;
-	Worker* worker;
 
 	//Login screens
 	print::printTitle("INICIAR SESION");
 	print::printHints("Ingrese su identificador");
 	print::setCursorToInputPos();
 	cin >> triedID;
-	worker = supermarket.getWorkerOnID(triedID);
-	if (worker == nullptr) {
+	logedWorker = supermarket.getWorkerOnID(triedID);
+	if (logedWorker == nullptr) {
 		cout << "Error al ingresar el identificador de usuario" << endl;
 		return;
 	}
@@ -56,14 +55,14 @@ void App::showSpecificMenu(const WorkerType& workerType){
 		}
 
 	}
-	if (!worker->getCredential().isPassCorrect(triedPass)) {
+	if (!logedWorker->getCredential().isPassCorrect(triedPass)) {
 		cout << "Error al ingresar la contraseña" << endl;
 		return;
 	}
 	
 
 	
-	switch (worker->getCredential().getWorkerType())
+	switch (logedWorker->getCredential().getWorkerType())
 	{
 	case unasigned:
 		cout << "El trabajador no cuenta con ninguna funcion asignada hasta el momento\n";
@@ -119,8 +118,11 @@ void App::searchMenu(Searchable*& searchedObject, const SearchType& objectType, 
 
 void App::showCashierMenu(){
 	int input;
-	Searchable* selectedClient = nullptr;
-	Searchable* selectedProduct = nullptr;
+	Searchable* searchedClient = nullptr;
+	Searchable* searchedProduct = nullptr;
+
+	Client* selectedClient = nullptr;
+	Product* selectedProduct = nullptr;
 	do
 	{
 		system("CLS");
@@ -139,9 +141,13 @@ void App::showCashierMenu(){
 			break;
 		case 2:
 			system("CLS");
-			searchMenu(selectedClient, SearchType::client, "CAJERO", "ENTER para seleccionar al primer cliente de la lista");
+			searchMenu(searchedClient, SearchType::client, "CAJERO", "ENTER para seleccionar al primer cliente de la lista");
+			selectedClient = dynamic_cast<Client*> (searchedClient);
+			selectedClient->addNewSale(new Sale(selectedClient, logedWorker, { 1, 1, 2023 }, 6));
 			while (true) {
-				searchMenu(selectedProduct, SearchType::product, "CAJERO", "ENTER para agregar el primer producto de la lista a la venta");
+				searchMenu(searchedProduct, SearchType::product, "CAJERO", "ENTER para agregar el primer producto de la lista a la venta");
+				selectedProduct = dynamic_cast<Product*> (searchedProduct);
+				supermarket.sales.back()->addNewProduct(selectedProduct);
 			}
 			break;
 		default:
