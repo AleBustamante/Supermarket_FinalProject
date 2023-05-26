@@ -54,11 +54,14 @@ namespace print{
     constexpr int CURSOR_WIDTH = 168;
     constexpr int INPUT_POS_Y = 4;
     constexpr int OUTPUT_POS_Y = CURSOR_HEIGHT/2 ;
+    constexpr int RESULTS_POS_X = CURSOR_WIDTH / 2;
+    constexpr int RESULTS_POS_Y = INPUT_POS_Y;
 
     //Cursor position
     void goToXY(Vector2 coordenates);
     void setCursorToInputPos();
     void setCursorToOutputPos();
+    void setCursorToResultsPos();
 
 
     void setColor(WORD color);

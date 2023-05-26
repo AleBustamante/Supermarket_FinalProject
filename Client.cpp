@@ -1,20 +1,17 @@
 #include "Client.h"
 
 
-Client::Client(const string& name, const string& lastName, const int& CIorNIT, const int& identifier){
+Client::Client(const string& name, const string& lastName, const int& CIorNIT){
 	this->name = name;
 	this->lastName = lastName;
 	this->CIorNIT = CIorNIT;
-	this->identifier = identifier;
 	shoppingHistory.push_back(nullptr);
 }
 
 Client::Client(){
 }
 
-int Client::getIdentifier(){
-	return identifier;
-}
+
 
 string Client::getName(){
 	return name;
@@ -29,10 +26,17 @@ int Client::getCIorNIT(){
 }
 
 void Client::showAllClientData(){
-	cout << "IDENTIFICADOR: " << identifier << endl;
 	cout << "NOMBRE: " << name << endl;
 	cout << "APELLIDO: " << lastName << endl;
 	cout << "CI O NIT: " << CIorNIT << endl << endl;
+}
+
+void Client::addNewSale(Sale* sale){
+	shoppingHistory.push_back(sale);
+}
+
+int Client::getAutoID(){
+	return lastID++;
 }
 
 bool Client::isInIdentifier(const int& search){

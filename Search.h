@@ -11,6 +11,13 @@
 
 using namespace std;
 
+
+enum SearchType{
+	product,
+	client,
+	worker
+};
+
 template<class T, class Enable = enable_if<is_base_of<Searchable, T>::value>>
 void searchPrintResults(vector<T*> objectsList, const char& input, string& search, Searchable*& object) {
 	bool objectFound = false;

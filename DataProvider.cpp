@@ -52,7 +52,7 @@ void DataProvider::loadData(){
 			clientsDB >> name;
 			clientsDB >> lastName;
 			clientsDB >> CIorNIT;
-			supermarket->clients.push_back(new Client(name, lastName, CIorNIT, identifier));
+			supermarket->clients.push_back(new Client(name, lastName, CIorNIT));
 		}
 		clientsDB.close();
 	}
@@ -101,7 +101,7 @@ void DataProvider::loadData(){
 
 		while (!salesDB.eof()) {
 			salesDB >> identifier;
-			salesDB >> IDWorker;
+			salesDB >> IDWorker; //CIorNIT
 			salesDB >> IDClient;
 			salesDB >> date.day;
 			salesDB >> date.month;
@@ -153,8 +153,6 @@ void DataProvider::saveNewClient(Client* client){
 	ofstream clientDB;
 	clientDB.open(clientsDBPath, ios::app);
 	clientDB << '\n';
-	clientDB << client->getIdentifier();
-	clientDB << '\n';
 	clientDB << client->getName();
 	clientDB << '\n';
 	clientDB << client->getLastName();
@@ -191,8 +189,6 @@ void DataProvider::saveNewSale(Sale* sale){
 	saleDB << sale->getIdetifier();
 	saleDB << '\n';
 	saleDB << sale->getCashier()->getIdentifier();
-	saleDB << '\n';
-	saleDB << sale->getClient()->getIdentifier();
 	saleDB << '\n';
 	saleDB << sale->getDate().day;
 	saleDB << '\n';

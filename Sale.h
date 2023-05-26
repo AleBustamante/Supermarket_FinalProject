@@ -27,6 +27,7 @@ private:
 
 public:
 	Sale(vector<Product*> products, Client* client, Worker* cashier, const Date& date, const int& identifier);
+	Sale(Client* client, Worker* cashier, const Date& date, const int& identifier);
 	void showAllSaleData();
 
 
@@ -35,6 +36,9 @@ public:
 	vector<Product*> getProducts();
 	Client* getClient();
 	Worker* getCashier();
+
+
+	void addNewProduct(Product* product);
 	
 };
 

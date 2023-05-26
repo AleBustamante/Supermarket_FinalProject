@@ -21,7 +21,7 @@ public:
 	bool hasPriviliges;
 
 
-	static string encryptedString(const string& unencrypted);
+	string encryptedString(const string& unencrypted);
 
 
 public:

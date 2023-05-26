@@ -14,22 +14,55 @@ void App::showLoginMenu(){
 }
 
 void App::showSpecificMenu(const WorkerType& workerType){
-	int loginID;
-	char loginPass;
+	int triedID;
+	char bufferPass;
+	string triedPass;
+
+	//Login screens
 	print::printTitle("INICIAR SESION");
 	print::printHints("Ingrese su identificador");
 	print::setCursorToInputPos();
-	cin >> loginID;
+	cin >> triedID;
+	logedWorker = supermarket.getWorkerOnID(triedID);
+	if (logedWorker == nullptr) {
+		cout << "Error al ingresar el identificador de usuario" << endl;
+		return;
+	}
 	system("CLS");
 	print::printTitle("INICIAR SESION");
 	print::printHints("Ingrese su contrasenia");
 	print::setCursorToInputPos();
-	while (loginPass = _getch()) {
-		cout << "*";
+	while (bufferPass = _getch()) {
+		system("CLS");
+		print::printTitle("INICIAR SESION");
+		print::printHints("Ingrese su contrasenia");
+		
+		if (bufferPass == '\r') {
+			system("CLS");
+			break;
+		}
+		else if (bufferPass == '\b' && triedPass.size() == 0) {}
+
+		else if (bufferPass == '\b') {
+			triedPass.pop_back();
+		}
+		else {
+			triedPass.push_back(bufferPass);
+		}
+		
+		for (int i = 0; i < triedPass.size(); i++) {
+			cout << "*";
+		}
+
 	}
+	if (!logedWorker->getCredential().isPassCorrect(triedPass)) {
+		cout << "Error al ingresar la contraseña" << endl;
+		return;
+	}
+	
 
 	
-	switch (workerType)
+	switch (logedWorker->getCredential().getWorkerType())
 	{
 	case unasigned:
 		cout << "El trabajador no cuenta con ninguna funcion asignada hasta el momento\n";
@@ -52,7 +85,7 @@ void App::showSpecificMenu(const WorkerType& workerType){
 	}
 }
 
-void App::searchMenu(Searchable*& searchedObject, const WorkerType& objectType, const string& title,
+void App::searchMenu(Searchable*& searchedObject, const SearchType& objectType, const string& title,
 	                 const string& hint1, const string& hint2, const string& hint3){
 	char input;
 	string search;
@@ -68,15 +101,13 @@ void App::searchMenu(Searchable*& searchedObject, const WorkerType& objectType, 
 		print::printHints(hint1, hint2, hint3);
 		switch (objectType)
 		{
-		case unasigned:
-			break;
-		case cashier:
-			searchPrintResults(supermarket.getClients(), input, search, searchedObject);
-			break;
-		case warehouse:
+		case product:
 			searchPrintResults(supermarket.getProducts(), input, search, searchedObject);
 			break;
-		case management:
+		case client:
+			searchPrintResults(supermarket.getClients(), input, search, searchedObject);
+			break;
+		case worker:
 			searchPrintResults(supermarket.getWorkers(), input, search, searchedObject);
 			break;
 		default:
@@ -86,19 +117,81 @@ void App::searchMenu(Searchable*& searchedObject, const WorkerType& objectType, 
 }
 
 void App::showCashierMenu(){
+	int input;
+	Searchable* searchedClient = nullptr;
+	Searchable* searchedProduct = nullptr;
 
-	Searchable* selectedClient = nullptr;
-	searchMenu(selectedClient, WorkerType::cashier, "CLIENTE", "ENTER para seleccionar al primer cliente de la lista");
+	Client* selectedClient = nullptr;
+	Product* selectedProduct = nullptr;
+	do
+	{
+		system("CLS");
+		print::printTitle("CAJERO");
+		print::printHints("Ingrese una opcion y presione ENTER");
+		print::setCursorToOutputPos();
+		cout << "1. Registar nuevo cliente" << endl;
+		cout << "2. Registrar venta" << endl;
+		print::setCursorToInputPos();
+		cin >> input;
+		switch (input)
+		{
+		case 1:
+			system("CLS");
+			registerNewClient();
+			break;
+		case 2:
+			system("CLS");
+			searchMenu(searchedClient, SearchType::client, "CAJERO", "ENTER para seleccionar al primer cliente de la lista");
+			selectedClient = dynamic_cast<Client*> (searchedClient);
+			selectedClient->addNewSale(new Sale(selectedClient, logedWorker, { 1, 1, 2023 }, 6));
+			while (true) {
+				searchMenu(searchedProduct, SearchType::product, "CAJERO", "ENTER para agregar el primer producto de la lista a la venta");
+				selectedProduct = dynamic_cast<Product*> (searchedProduct);
+				supermarket.sales.back()->addNewProduct(selectedProduct);
+			}
+			break;
+		default:
+
+			break;
+		}
+
+	} while (input != 0);
+	
+}
+
+void App::registerNewClient() {
+	string name, lastName, strCIorNIT;
+	int CIorNIT;
+	system("CLS");
+	print::printTitle("REGISTRO NUEVO CLIENTE");
+	print::printHints("Ingrese el nombre del client", "q + ENTER para salir");
+	print::setCursorToInputPos();
+	cin >> name;
+	if (name == "q") { return; }
+	system("CLS");
+	print::printTitle("REGISTRO NUEVO CLIENTE");
+	print::printHints("Ingrese el apellido del client", "q + ENTER para salir");
+	print::setCursorToInputPos();
+	cin >> lastName;
+	if (lastName == "q") { return; }
+	system("CLS");
+	print::printTitle("REGISTRO NUEVO CLIENTE");
+	print::printHints("Ingrese el CI o NIT del client", "q + ENTER para salir");
+	print::setCursorToInputPos();
+	cin >> strCIorNIT;
+	if (strCIorNIT == "q") { return; }
+	CIorNIT = stoi(strCIorNIT, nullptr, 10);
+	supermarket.clients.push_back(new Client(name, lastName, CIorNIT));
 }
 
 void App::showWarehouseMenu(){
 	Searchable* selectedProduct = nullptr;
-	searchMenu(selectedProduct, WorkerType::warehouse, "PRODUCTOS", "ENTER para seleccionar el primer producto de la lista");
+	searchMenu(selectedProduct, SearchType::product, "ALMACEN", "ENTER para seleccionar el primer producto de la lista");
 }
 
 void App::ShowManagementMenu(){
 	Searchable* selectedWorker = nullptr;
-	searchMenu(selectedWorker, WorkerType::management, "TRABAJADORES", "ENTER para seleccionar al primer trabajador de la lista");
+	searchMenu(selectedWorker, SearchType::worker, "GERENCIA", "ENTER para seleccionar al primer trabajador de la lista");
 }
 
 void App::showMenu(){
@@ -123,9 +216,9 @@ void App::run(){
 	dataProvider.loadData();
 	print::setDefaultWindowSize();
 
-	//showSpecificMenu(WorkerType::management);
+	showSpecificMenu(WorkerType::management);
 
-	ShowManagementMenu();
+	//ShowManagementMenu();
 	/*int option = -1;
 	assignSupermarket();
 	dataProvider.loadData();

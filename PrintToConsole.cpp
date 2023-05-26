@@ -13,6 +13,10 @@ void print::setCursorToOutputPos(){
 	goToXY({ 0, OUTPUT_POS_Y });
 }
 
+void print::setCursorToResultsPos(){
+	goToXY({ RESULTS_POS_X, RESULTS_POS_Y });
+}
+
 void print::setColor(WORD color){
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);

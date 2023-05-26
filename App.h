@@ -13,10 +13,9 @@
 using namespace std;
 
 
-
-
 class App{
 private:
+	Worker* logedWorker;
 	Supermarket supermarket;
 	DataProvider dataProvider;
 	//Credential loginCredentials;
@@ -24,9 +23,13 @@ private:
 	void showLoginMenu();
 	void showSpecificMenu(const WorkerType& workerType);
 
-	void searchMenu(Searchable*& searchedObject, const WorkerType& objectType, const string& title,
+	void searchMenu(Searchable*& searchedObject, const SearchType & objectType, const string& title,
 		            const string& hint1 = "", const string& hint2 = "", const string& hint3 = "");
+	
+	//Cashier
 	void showCashierMenu();
+	void registerNewClient();
+
 	void showWarehouseMenu();
 	void ShowManagementMenu();
 
