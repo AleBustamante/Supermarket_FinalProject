@@ -27,6 +27,11 @@ public:
 	void loadData();
 	void setSupermarket(Supermarket* assignedSupermarket);
 
+	void saveAllWorkers();
+	void saveAllClients();
+	void saveAllSales();
+	void saveAllProducts();
+
 	void saveNewWorker(Worker* worker);
 	void saveNewClient(Client* client);
 	void saveNewProduct(Product* product);

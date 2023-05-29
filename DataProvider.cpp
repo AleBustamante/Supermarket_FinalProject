@@ -48,7 +48,6 @@ void DataProvider::loadData(){
 		clientsDB.seekg(0, ios::beg);
 		
 		while (!clientsDB.eof()) {
-			clientsDB >> identifier;
 			clientsDB >> name;
 			clientsDB >> lastName;
 			clientsDB >> CIorNIT;
@@ -125,6 +124,123 @@ void DataProvider::setSupermarket(Supermarket* assignedSupermarket){
 	supermarket = assignedSupermarket;
 }
 
+void DataProvider::saveAllWorkers(){
+	ofstream workersDB;
+	workersDB.open(workersDBPath);
+	int i = 1;
+	for (Worker* w : supermarket->getWorkers()) {
+		workersDB << w->getIdentifier();
+		workersDB << '\n';
+		workersDB << w->getCredential().getHashedPassword();
+		workersDB << '\n';
+		workersDB << w->getCredential().getWorkerType();
+		workersDB << '\n';
+		workersDB << w->getCredential().getHasPriviliges();
+		workersDB << '\n';
+		workersDB << w->getName();
+		workersDB << '\n';
+		workersDB << w->getLastName();
+		workersDB << '\n';
+		workersDB << w->getBaseSalary();
+		workersDB << '\n';
+		workersDB << w->getExtraHours();
+		workersDB << '\n';
+		workersDB << w->getDiscounts();
+		workersDB << '\n';
+		workersDB << w->getDiscountsForBenefits();
+		if (i != supermarket->getWorkers().size()){
+			workersDB << '\n';
+		}
+		else {
+
+		}
+		i++;
+	}
+}
+
+void DataProvider::saveAllClients(){
+	ofstream clientDB;
+	clientDB.open(clientsDBPath);
+	int i = 1;
+	for (Client* c : supermarket->getClients()) {
+		clientDB << c->getName();
+		clientDB << '\n';
+		clientDB << c->getLastName();
+		clientDB << '\n';
+		clientDB << c->getCIorNIT();
+		if (i != supermarket->getClients().size()) {
+			clientDB << '\n';
+		}
+		else {
+
+		}
+		i++;
+	}
+	clientDB.close();
+}
+
+void DataProvider::saveAllSales(){
+	ofstream saleDB;
+	saleDB.open(salesDBPath);
+	int i = 1;
+	for (Sale* s : supermarket->GetSales()) {
+		saleDB << s->getIdetifier();
+		saleDB << '\n';
+		saleDB << s->getCashier()->getIdentifier();
+		saleDB << '\n';
+		saleDB << s->getClient()->getCIorNIT();
+		saleDB << '\n';
+		saleDB << s->getDate().day;
+		saleDB << '\n';
+		saleDB << s->getDate().month;
+		saleDB << '\n';
+		saleDB << s->getDate().year;
+		saleDB << '\n';
+		for (Product* p : s->getProducts()) {
+			saleDB << p->getBarcode();
+			saleDB << '\n';
+		}
+		saleDB << -111;
+		if (i != supermarket->GetSales().size()) {
+			saleDB << '\n';
+		}
+		else {
+
+		}
+		i++;
+	}
+	saleDB.close();
+
+}
+
+void DataProvider::saveAllProducts(){
+	ofstream productDB;
+	productDB.open(productsDBPath);
+	int i = 1;
+	for (Product* p : supermarket->getProducts()) {
+		productDB << p->getBarcode();
+		productDB << '\n';
+		productDB << p->getName();
+		productDB << '\n';
+		productDB << p->getCostPrice();
+		productDB << '\n';
+		productDB << p->getSellPrice();
+		productDB << '\n';
+		productDB << p->getTaxes();
+		productDB << '\n';
+		productDB << p->getDisplayPrice();
+		if (i != supermarket->getProducts().size()) {
+			productDB << '\n';
+		}
+		else {
+
+		}
+		i++;
+
+	}
+	productDB.close();
+}
+
 void DataProvider::saveNewWorker(Worker* worker){
 
 	ofstream workersDB;
@@ -143,7 +259,7 @@ void DataProvider::saveNewWorker(Worker* worker){
 	workersDB << worker->getDiscounts();
 	workersDB << '\n';
 	workersDB << worker->getDiscountsForBenefits();
-	workersDB << '\n';
+
 
 	workersDB.close();
 }

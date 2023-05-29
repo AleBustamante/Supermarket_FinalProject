@@ -10,6 +10,9 @@ Product::Product(const int& barcode, const float& costPrice, const float& sellPr
     this->name = name;
 }
 
+Product::Product(){
+}
+
 int Product::getBarcode(){
     return barcode;
 }
@@ -32,6 +35,30 @@ float Product::getDisplayPrice(){
 
 string Product::getName(){
     return name;
+}
+
+void Product::setBarcode(const int& barcode){
+    this->barcode = barcode;
+}
+
+void Product::setCostPrice(const float& costPrice){
+    this->costPrice = costPrice;
+}
+
+void Product::setSellPrice(const float& sellPrice){
+    this->sellPrice = sellPrice;
+}
+
+void Product::setTaxes(const float& taxes){
+    this->taxes = taxes;
+}
+
+void Product::setDisplayPrice(const float& displayPrice){
+    this->displayPrice = displayPrice;
+}
+
+void Product::setName(const string& name){
+    this->name = name;
 }
 
 void Product::showAllProductData(){
