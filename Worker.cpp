@@ -15,6 +15,14 @@ Worker::Worker(const string& name, const string& lastName, const Credential& cre
 	this->discountsForBenefits = discountsForBenefits;
 }
 
+Worker::Worker(const string& name, const string& lastName, const int& identifier)
+{
+	this->name = name;
+	this->lastName = lastName;
+	this->identifier = identifier;
+
+}
+
 void Worker::showAllWorkerData(){
 	cout << "IDENTIFICADOR: " << identifier << endl;
 	cout << "NOMBRE: " << name << endl;

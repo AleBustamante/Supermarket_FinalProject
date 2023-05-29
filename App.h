@@ -9,6 +9,8 @@
 #include "Searchable.h"
 #include "Search.h"
 #include "PrintToConsole.h"
+#include "Test_DataProvider.h"
+#include "Test_Searchable.h"
 
 using namespace std;
 

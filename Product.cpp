@@ -10,6 +10,12 @@ Product::Product(const int& barcode, const float& costPrice, const float& sellPr
     this->name = name;
 }
 
+Product::Product(const int& barcode, const string& name)
+{
+    this->barcode = barcode;
+    this->name = name;
+}
+
 int Product::getBarcode(){
     return barcode;
 }

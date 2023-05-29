@@ -204,4 +204,9 @@ void DataProvider::saveNewSale(Sale* sale){
 	saleDB.close();
 }
 
+Supermarket* DataProvider::getsupermarker()
+{
+	return supermarket;
+}
+
 

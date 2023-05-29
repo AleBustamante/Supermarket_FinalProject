@@ -214,6 +214,12 @@ void App::assignSupermarket(){
 void App::run(){
 	assignSupermarket();
 	dataProvider.loadData();
+	Test_DataProvider a;
+	Test_Searchable b;
+	b.Test_SearchableCliente();
+	b.Test_SearchableProduct();
+	b.Test_SearchableWorker();
+	a.Test_DataProviderloadDatafirstelement(dataProvider);
 	print::setDefaultWindowSize();
 
 	showSpecificMenu(WorkerType::management);

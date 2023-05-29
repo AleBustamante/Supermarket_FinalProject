@@ -30,7 +30,7 @@ private:
 public:
 	Worker(const string& name, const string& lastName, const Credential& credential, const float& baseSalary, const int& identifier = -1, const float& extraHours = 0.0f,
 	const float& discounts = 0.0f, const float& discountsForBenefits = 0.0f);
-
+	Worker(const string& name, const string& lastName, const int& identifier);
 	void showAllWorkerData();
 
 	int getIdentifier();

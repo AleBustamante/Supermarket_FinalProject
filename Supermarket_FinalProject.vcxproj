@@ -138,6 +138,8 @@
     <ClCompile Include="Sale.cpp" />
     <ClCompile Include="Search.cpp" />
     <ClCompile Include="Supermarket.cpp" />
+    <ClCompile Include="Test_DataProvider.cpp" />
+    <ClCompile Include="Test_Searchable.cpp" />
     <ClCompile Include="Worker.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +153,8 @@
     <ClInclude Include="Search.h" />
     <ClInclude Include="Searchable.h" />
     <ClInclude Include="Supermarket.h" />
+    <ClInclude Include="Test_DataProvider.h" />
+    <ClInclude Include="Test_Searchable.h" />
     <ClInclude Include="Worker.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

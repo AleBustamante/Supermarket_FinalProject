@@ -17,13 +17,12 @@ constexpr char productsDBPath[] = "./ProductsDataBase.txt";
 class DataProvider{
 private:
 	Supermarket* supermarket;
-
 	static int currentIDWorker;
 	static int currentIDClient;
 	static int currentIDSale;
 
-
 public:
+	
 	void loadData();
 	void setSupermarket(Supermarket* assignedSupermarket);
 
@@ -33,5 +32,6 @@ public:
 	void saveNewSale(Sale* sale);
 
 	static void getCurrentIdentifier();
+	Supermarket* getsupermarker();
 };
 
