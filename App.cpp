@@ -117,7 +117,8 @@ void App::searchMenu(Searchable*& searchedObject, const SearchType& objectType, 
 }
 
 void App::showCashierMenu(){
-	int input;
+	int option;
+	string input;
 	Searchable* searchedClient = nullptr;
 	Searchable* searchedProduct = nullptr;
 
@@ -131,9 +132,12 @@ void App::showCashierMenu(){
 		print::setCursorToOutputPos();
 		cout << "1. Registar nuevo cliente" << endl;
 		cout << "2. Registrar venta" << endl;
+		cout << "3. Guardar todos los cambios" << endl;
+		cout << "0. Salir" << endl;
 		print::setCursorToInputPos();
 		cin >> input;
-		switch (input)
+		option = stoi(input);
+		switch (option)
 		{
 		case 1:
 			system("CLS");
@@ -145,17 +149,37 @@ void App::showCashierMenu(){
 			selectedClient = dynamic_cast<Client*> (searchedClient);
 			selectedClient->addNewSale(new Sale(selectedClient, logedWorker, { 1, 1, 2023 }, 6));
 			while (true) {
+				system("CLS");
 				searchMenu(searchedProduct, SearchType::product, "CAJERO", "ENTER para agregar el primer producto de la lista a la venta");
 				selectedProduct = dynamic_cast<Product*> (searchedProduct);
 				supermarket.sales.back()->addNewProduct(selectedProduct);
+				system("CLS");
+				print::printTitle("CAJERO");
+				print::printHints("Presione q + ENTER para finalizar la compra", "Presione cualquer tecla + ENTER para continuar ingresando productos");
+				print::setCursorToInputPos();
+				cin >> input;
+				if (input == "q") {
+					system("CLS");
+					print::printTitle("CAJERO");
+					print::printHints("Presione cualquier tecla + ENTER para continuar");
+					print::setCursorToInputPos();
+					cout << "El total a pagar es de: " << supermarket.sales.back()->getTotalOfSale() << endl;
+					cin >> input;
+					break;
+				}
+				if (input == "q") {
+					break;
+				}
 			}
+		case 3:
+			dataProvider.saveAllClients();
+			dataProvider.saveAllSales();
 			break;
 		default:
-
 			break;
 		}
 
-	} while (input != 0);
+	} while (option != 0);
 	
 }
 
@@ -185,13 +209,181 @@ void App::registerNewClient() {
 }
 
 void App::showWarehouseMenu(){
-	Searchable* selectedProduct = nullptr;
-	searchMenu(selectedProduct, SearchType::product, "ALMACEN", "ENTER para seleccionar el primer producto de la lista");
+	
+	int option;
+	string input;
+	Searchable* searchedProduct = nullptr;
+	Product* selectedProduct = nullptr;
+	Product newProduct;
+	int barcode; float costPrice, sellPrice, taxes, displayPrice; string name; //New Product temp variables
+	do
+	{
+		system("CLS");
+		print::printTitle("ALMACEN");
+		print::printHints("Ingrese una opcion y presione ENTER");
+		print::setCursorToOutputPos();
+		cout << "1. Registar nuevo producto" << endl;
+		cout << "2. Eliminar producto" << endl;
+		cout << "3. Mostrar todos los productos disponibles" << endl;
+		cout << "4. Guardar todos los cambios" << endl;
+		cout << "0. Salir" << endl;
+		print::setCursorToInputPos();
+		cin >> input;
+		option = stoi(input);
+		switch (option)
+		{
+		case 1:
+			system("CLS");
+			print::printTitle("ALMACEN");
+			print::printHints("Ingrese el nombre del producto");
+			cin >> name;
+			print::printTitle("ALMACEN");
+			print::printHints("Ingrese el código de barras del producto");
+			print::setCursorToInputPos();
+			cin >> barcode;
+			system("CLS");
+			print::printTitle("ALMACEN");
+			print::printHints("Ingrese el precio de costo");
+			cin >> costPrice;
+			system("CLS");
+			print::printTitle("ALMACEN");
+			print::printHints("Ingrese el precio de venta");
+			cin >> sellPrice;
+			system("CLS");
+			print::printTitle("ALMACEN");
+			print::printHints("Ingrese el total de impuestos");
+			cin >> taxes;
+			system("CLS");
+			print::printTitle("ALMACEN");
+			print::printHints("Ingrese el precio que se verá en el anaquel");
+			cin >> displayPrice;
+			supermarket.products.push_back(new Product(barcode, costPrice, sellPrice, taxes, displayPrice, name));
+			break;
+		case 2:
+			system("CLS");
+			searchMenu(searchedProduct, SearchType::product, "ALMACEN", "ENTER para eliminar el primer producto de la lista");
+			selectedProduct = dynamic_cast<Product*> (searchedProduct);
+			for (int i = 0; i < supermarket.products.size(); i++) {
+				if (selectedProduct->getBarcode() == supermarket.products[i]->getBarcode()) {
+					supermarket.products.erase(supermarket.products.begin() + i);
+				}
+			}
+			break;
+		case 3:
+			print::printTitle("ALMACEN");
+			print::printHints("Presione cualquier tecla + ENTER para continuar");
+			print::setCursorToInputPos();
+			supermarket.showAllProductsData();
+			cin >> input;
+			break;
+		case 4:
+			dataProvider.saveAllProducts();
+			break;
+		default:
+			break;
+		}
+	}
+	while (option != 0);
+
 }
 
 void App::ShowManagementMenu(){
-	Searchable* selectedWorker = nullptr;
-	searchMenu(selectedWorker, SearchType::worker, "GERENCIA", "ENTER para seleccionar al primer trabajador de la lista");
+
+	string input;
+	int option;
+	Searchable* searchedWorker = nullptr;
+	Worker* selectedWorker = nullptr;
+
+	Credential credential; int workerType; //new Credential variable
+	int identifier; string name, lastName; float baseSalary; //new Worker temp variables
+	do
+	{
+		system("CLS");
+		print::printTitle("CAJERO");
+		print::printHints("Ingrese una opcion y presione ENTER");
+		print::setCursorToOutputPos();
+		cout << "1. Registar nuevo trabajador" << endl;
+		cout << "2. Eliminar trabajador de la nomina" << endl;
+		cout << "3. Mostrar todos los trabajadores" << endl;
+		cout << "4. Guardar todos los cambios" << endl;
+		cout << "0. Salir" << endl;
+		print::setCursorToInputPos();
+		cin >> input;
+		option = stoi(input);
+		switch (option)
+		{
+		case 1:
+
+			system("CLS");
+			print::printTitle("GERENCIA");
+			print::printHints("Ingrese el tipo de trabajador a registrar");
+			print::setCursorToOutputPos();
+			cout << "1. Cajero" << endl;
+			cout << "2. Almacenes" << endl;
+			cout << "3. Gerencia" << endl;
+			print::setCursorToInputPos();
+			cin >> workerType;
+			credential.workerType = (WorkerType)workerType;
+			system("CLS");
+			print::printTitle("GERENCIA");
+			print::printHints("Ingrese el nombre del trabajador a registrar");
+			print::setCursorToInputPos();
+			cin >> name;
+			system("CLS");
+			print::printTitle("GERENCIA");
+			print::printHints("Ingrese el apellido del trabajador a registrar");
+			print::setCursorToInputPos();
+			cin >> lastName;
+			system("CLS");
+			print::printTitle("GERENCIA");
+			print::printHints("Ingrese el sueldo base que tendra");
+			print::setCursorToInputPos();
+			cin >> baseSalary;
+			system("CLS");
+			print::printTitle("GERENCIA");
+			print::printHints("Ingrese el id quen tendra su cuenta");
+			print::setCursorToInputPos();
+			cin >> identifier;
+			system("CLS");
+			print::printTitle("GERENCIA");
+			print::printHints("Ingrese la constraseña que tendra su cuenta");
+			print::setCursorToInputPos();
+			cin >> credential.hashedPassword;
+			supermarket.workers.push_back(new Worker(name, lastName, credential, baseSalary, identifier));
+			system("CLS");
+			print::printTitle("GERENCIA");
+			print::printHints("Presione cualquier tecla + ENTER para continuar");
+			print::setCursorToInputPos();
+			cout << "El nuevo trabajador fue registrado de forma exitosa" << endl;
+			cin >> input;
+			break;
+		case 2:
+			system("CLS");
+			searchMenu(searchedWorker, SearchType::worker, "GERENCIA", "ENTER para eliminar el primer trabajador de la lista");
+			selectedWorker = dynamic_cast<Worker*> (searchedWorker);
+			for (int i = 0; i < supermarket.workers.size(); i++) {
+				if (selectedWorker->getIdentifier() == supermarket.workers[i]->getIdentifier()) {
+					supermarket.workers.erase(supermarket.workers.begin() + i);
+				}
+			}
+			break;
+		case 3:
+			system("CLS");
+			print::printTitle("GERENCIA");
+			print::printHints("Presione cualquier tecla + ENTER para continuar");
+			print::setCursorToInputPos();
+			supermarket.showAllWorkersData();
+			cin >> input;
+			break;
+		case 4:
+			dataProvider.saveAllWorkers();
+			break;
+		default:
+			break;
+		}
+
+	} while (option != 0);
+
 }
 
 void App::showMenu(){
@@ -218,49 +410,5 @@ void App::run(){
 
 	showSpecificMenu(WorkerType::management);
 
-	//ShowManagementMenu();
-	/*int option = -1;
-	assignSupermarket();
-	dataProvider.loadData();
-	do
-	{
-		showMenu();
-		cin >> option;
-		switch (option)
-		{
-		case 1:
-			
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
-			system("CLS");
-			supermarket.showAllWorkersData();
-			break;
-		case 5:
-			system("CLS");
-			supermarket.showAllClientsData();
-			break;
-		case 6:
-			system("CLS");
-			supermarket.showAllProductsData();
-			break;
-		case 7:
-			system("CLS");
-			supermarket.showAllSalesData();
-			break;
-		case 0:
-			system("CLS");
-			cout << "HASTA LUEGO";
-			break;
-		default:
-			cout << "La opcion ingresado no es valida\n";
-			system("CLS");
-			break;
-		}
-	} while (option != 0);
-	*/
 	
 }

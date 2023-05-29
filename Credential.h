@@ -15,7 +15,6 @@ enum WorkerType{
 
 class Credential{
 public:
-	int identifier;
 	WorkerType workerType;
 	string hashedPassword;
 	bool hasPriviliges;
@@ -24,11 +23,9 @@ public:
 	string encryptedString(const string& unencrypted);
 
 
-public:
-	Credential(int identifier = -1,  const string& hashedPassword = "pass", const WorkerType& workerType = WorkerType::unasigned, bool privileges = false);
+	Credential(const string& hashedPassword = "pass", const WorkerType& workerType = WorkerType::unasigned, bool privileges = false);
 	
 	
-	void setIdentifier(const int& identifier);
 	void setWokerType(const WorkerType& workerType);
 	void setHashedPassword(const string& hashedPassword);
 	void setPriviliges(const bool& hasPriviliges);
@@ -36,6 +33,7 @@ public:
 
 	string getHashedPassword();
 	WorkerType getWorkerType();
+	bool getHasPriviliges();
 
 
 	 bool isPassCorrect(const string& triedPass);

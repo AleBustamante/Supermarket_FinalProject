@@ -10,16 +10,12 @@ string Credential::encryptedString(const string& unencrypted) {
 	return encrypted;
 }
 
-Credential::Credential(int identifier, const string& hashedPassword, const WorkerType& workerType, bool privileges){
-	this->identifier = identifier;
+Credential::Credential(const string& hashedPassword, const WorkerType& workerType, bool privileges){
 	this->hashedPassword = hashedPassword;
 	this->workerType = workerType;
 	this->hasPriviliges = privileges;
 }
 
-void Credential::setIdentifier(const int& identifier){
-	this->identifier = identifier;
-}
 
 void Credential::setWokerType(const WorkerType& workerType){
 	this->workerType = workerType;
@@ -39,6 +35,10 @@ string Credential::getHashedPassword(){
 
 WorkerType Credential::getWorkerType(){
 	return workerType;
+}
+
+bool Credential::getHasPriviliges(){
+	return hasPriviliges;
 }
 
 bool Credential::isPassCorrect(const string& triedPass){

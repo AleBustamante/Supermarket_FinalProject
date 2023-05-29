@@ -39,6 +39,9 @@ public:
 
 
 	void addNewProduct(Product* product);
+
+
+	float getTotalOfSale();
 	
 };
 

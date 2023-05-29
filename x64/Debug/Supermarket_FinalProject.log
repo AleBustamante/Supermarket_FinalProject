@@ -1,14 +1,2 @@
 ﻿  App.cpp
-  Client.cpp
-  DataProvider.cpp
-C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\DataProvider.cpp(74,12): warning C4244: 'inicializando': conversión de 'std::streamoff' a 'int'; posible pérdida de datos
-  PrintToConsole.cpp
-C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\PrintToConsole.cpp(50,47): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
-C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\PrintToConsole.cpp(74,81): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
-C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\PrintToConsole.cpp(86,2): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
-  Sale.cpp
-  Search.cpp
-  Supermarket.cpp
-  main.cpp
-  Generando código...
   Supermarket_FinalProject.vcxproj -> C:\Users\Alejandro\Documents\Universidad\Progra II\Supermarket_FinalProject\x64\Debug\Supermarket_FinalProject.exe

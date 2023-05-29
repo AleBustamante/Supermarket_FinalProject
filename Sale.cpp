@@ -53,3 +53,11 @@ Worker* Sale::getCashier(){
 void Sale::addNewProduct(Product* product){
 	products.push_back(product);
 }
+
+float Sale::getTotalOfSale(){
+	float total = 0;
+	for (Product* p : products) {
+		total += p->getDisplayPrice();
+	}
+	return total;
+}

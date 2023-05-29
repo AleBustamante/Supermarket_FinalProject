@@ -23,6 +23,7 @@ public:
 	Product(const int& barcode, const float& costPrice, const float& sellPrice, const float& taxes, 
 		    float& displayPrice, const string& name);
 
+	Product();
 
 	int getBarcode();
 	float getCostPrice();
@@ -30,6 +31,15 @@ public:
 	float getTaxes();
 	float getDisplayPrice();
 	string getName();
+
+
+	void setBarcode(const int& barcode);
+	void setCostPrice(const float& costPrice);
+	void setSellPrice(const float& sellPrice);
+	void setTaxes(const float& taxes);
+	void setDisplayPrice(const float& displayPrice);
+	void setName(const string& name);
+
 
 	void showAllProductData();
 
